@@ -1,0 +1,45 @@
+{
+  "name": "az-timer",
+  "version": "1.0.0",
+  "description": "A set of timer implementations",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "tsc -w",
+    "build": "tsc",
+    "lint-staged": "lint-staged",
+    "lint-fix": "node node_modules/tslint/bin/tslint --fix"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,d.ts}": [
+      "npm run lint-fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aztack/az-timer.git"
+  },
+  "keywords": [
+    "timer",
+    "raf",
+    "webworker",
+    "oscillator",
+    "background-timer"
+  ],
+  "author": "aztack@163.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aztack/az-timer/issues"
+  },
+  "homepage": "https://github.com/aztack/az-timer#readme",
+  "devDependencies": {
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.4"
+  }
+}
