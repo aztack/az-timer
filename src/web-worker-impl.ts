@@ -21,9 +21,13 @@ export class WebWorkerTimer implements ITimer {
       if (method === 'setInterval' && this.intervalMap[id]) {
         this.intervalMap[id]();
       } else if (method === 'setTimeout') {
-
+        this.timeoutMap[id]();
+        delete this.timeoutMap[id];
+      } else if (method === 'clearInterval') {
+        delete this.intervalMap[id];
+      } else if (method === 'clearTimeout') {
+        delete this.timeoutMap[id];
       }
-
     };
     this.worker.onerror = console.error;
   }

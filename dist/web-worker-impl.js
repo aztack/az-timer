@@ -20,6 +20,14 @@ var WebWorkerTimer = /** @class */ (function () {
                 _this.intervalMap[id]();
             }
             else if (method === 'setTimeout') {
+                _this.timeoutMap[id]();
+                delete _this.timeoutMap[id];
+            }
+            else if (method === 'clearInterval') {
+                delete _this.intervalMap[id];
+            }
+            else if (method === 'clearTimeout') {
+                delete _this.timeoutMap[id];
             }
         };
         this.worker.onerror = console.error;
