@@ -35,6 +35,6 @@ function oscillatorImpl(callback: TimerCallback, frequency: number) {
     }
   }
   return () => stopped = true;
-};
+}
 
 export const OscillatorTimer = GenTimeCheckerImpl(oscillatorImpl);
