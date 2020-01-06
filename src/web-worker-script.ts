@@ -1,23 +1,27 @@
-export function getOnMessageHandler(event: MessageEvent) {
+export function getOnMessageHandler() {
   const timerIds: Record<number, number> = {};
-  return function() {
+  return function(event: MessageEvent) {
     const data = event.data;
     const { method, id, time } = data;
     switch (method) {
       case 'setInterval':
-        timerIds[id] = window.setInterval(() => {
-          postMessage({ id, method }, '*');
+        timerIds[id] = self.setInterval(() => {
+          // @ts-ignore
+          self.postMessage({ id, method });
         }, time);
         break;
       case 'clearInterval':
         if (timerIds.hasOwnProperty(id)) {
-          window.clearInterval(timerIds[id]);
+          self.clearInterval(timerIds[id]);
+          // @ts-ignore
+          self.postMessage({id, method});
           delete timerIds[id];
         }
         break;
       case 'setTimeout':
-        timerIds[id] = window.setTimeout(() => {
-          postMessage({ id, method}, '*');
+        timerIds[id] = self.setTimeout(() => {
+          // @ts-ignore
+          self.postMessage({ id, method});
           if (timerIds.hasOwnProperty(id)) {
             delete timerIds[id];
           }
@@ -25,7 +29,8 @@ export function getOnMessageHandler(event: MessageEvent) {
         break;
       case 'clearTimeout':
         if (timerIds.hasOwnProperty(id)) {
-          window.clearTimeout(timerIds[id]);
+          self.clearTimeout(timerIds[id]);
+          self.postMessage({id, method});
           delete timerIds[id];
         }
         break;

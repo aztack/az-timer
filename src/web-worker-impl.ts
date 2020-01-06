@@ -17,7 +17,7 @@ export class WebWorkerTimer implements ITimer {
 
   constructor() {
     this.worker.onmessage = (e: MessageEvent) => {
-      const { id, method } = e.data.id;
+      const { id, method } = e.data;
       if (method === 'setInterval' && this.intervalMap[id]) {
         this.intervalMap[id]();
       } else if (method === 'setTimeout') {

@@ -1,25 +1,29 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function getOnMessageHandler(event) {
+function getOnMessageHandler() {
     var timerIds = {};
-    return function () {
+    return function (event) {
         var data = event.data;
         var method = data.method, id = data.id, time = data.time;
         switch (method) {
             case 'setInterval':
-                timerIds[id] = window.setInterval(function () {
-                    postMessage({ id: id, method: method }, '*');
+                timerIds[id] = self.setInterval(function () {
+                    // @ts-ignore
+                    self.postMessage({ id: id, method: method });
                 }, time);
                 break;
             case 'clearInterval':
                 if (timerIds.hasOwnProperty(id)) {
-                    window.clearInterval(timerIds[id]);
+                    self.clearInterval(timerIds[id]);
+                    // @ts-ignore
+                    self.postMessage({ id: id, method: method });
                     delete timerIds[id];
                 }
                 break;
             case 'setTimeout':
-                timerIds[id] = window.setTimeout(function () {
-                    postMessage({ id: id, method: method }, '*');
+                timerIds[id] = self.setTimeout(function () {
+                    // @ts-ignore
+                    self.postMessage({ id: id, method: method });
                     if (timerIds.hasOwnProperty(id)) {
                         delete timerIds[id];
                     }
@@ -27,7 +31,8 @@ function getOnMessageHandler(event) {
                 break;
             case 'clearTimeout':
                 if (timerIds.hasOwnProperty(id)) {
-                    window.clearTimeout(timerIds[id]);
+                    self.clearTimeout(timerIds[id]);
+                    self.postMessage({ id: id, method: method });
                     delete timerIds[id];
                 }
                 break;

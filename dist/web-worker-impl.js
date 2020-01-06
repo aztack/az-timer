@@ -15,7 +15,7 @@ var WebWorkerTimer = /** @class */ (function () {
         this.intervalMap = {};
         this.timeoutMap = {};
         this.worker.onmessage = function (e) {
-            var _a = e.data.id, id = _a.id, method = _a.method;
+            var _a = e.data, id = _a.id, method = _a.method;
             if (method === 'setInterval' && _this.intervalMap[id]) {
                 _this.intervalMap[id]();
             }

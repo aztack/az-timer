@@ -12,15 +12,16 @@ function oscillatorImpl(callback, frequency) {
     var silence = ctx.createGain();
     silence.gain.value = 0;
     silence.connect(ctx.destination);
-    onEnd();
+    onEnd(false);
     var stopped = false;
-    function onEnd() {
+    function onEnd(exec) {
         var osc = ctx.createOscillator();
         osc.onended = onEnd;
         osc.connect(silence);
         osc.start(0);
         osc.stop(ctx.currentTime + freq);
-        callback(ctx.currentTime);
+        if (exec !== false)
+            callback(ctx.currentTime);
         if (stopped) {
             osc.onended = function () {
                 if (typeof ctx.close === 'function') {

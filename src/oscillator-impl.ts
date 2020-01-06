@@ -15,16 +15,16 @@ function oscillatorImpl(callback: TimerCallback, frequency: number) {
   silence.gain.value = 0;
   silence.connect(ctx.destination);
 
-  onEnd();
+  onEnd(false);
 
   let stopped = false;
-  function onEnd() {
+  function onEnd(exec: boolean | Event) {
     const osc = ctx.createOscillator();
     osc.onended = onEnd;
     osc.connect(silence);
     osc.start(0);
     osc.stop(ctx.currentTime + freq);
-    callback(ctx.currentTime);
+    if (exec !== false) callback(ctx.currentTime);
     if (stopped) {
       osc.onended = () => {
         if (typeof ctx.close === 'function') {
