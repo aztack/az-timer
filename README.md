@@ -1,9 +1,9 @@
-# Aztec Timer - A set of timer implementations
+# A set of timer implementations in modern browsers
 
 
 ## Web Worker Timer
 
-| Implementated with Web Worker
+Implementated with Web Worker
 
 ```js
 import { timer } from 'az-timer';
@@ -14,12 +14,12 @@ webWorkerTimer.clearInterval(id);
 
 ## Oscillator Timer
 
-| Implementated with WebAudio API.
+Implementated with WebAudio API.
 
 ```js
 import { timer } from 'az-timer';
 let id = -1;
-// oscillator timer must started by user gestures
+// oscillator timers must be started by user gestures
 start.onclick = () => {
   const oscTimer = timer('oscillator'); // or just timer()
   id = oscTimer.setInterval(() => {...}, interval);
@@ -31,8 +31,8 @@ stop.onclick = () => {
 
 ## RAF Timer
 
-| Implementated with `requestAnimationFrame`
-| (no vendor prefix considered)
+Implementated with `requestAnimationFrame`
+(no vendor prefix considered)
 
 ```js
 import { timer } from 'az-timer';
@@ -44,7 +44,7 @@ rafTimer.clearInterval(id);
 
 ## Native Timer
 
-| Implementated with `window.setInterval/clearInterval/setTimeout/clearTimeout`
+Implementated with `window.setInterval/clearInterval/setTimeout/clearTimeout`
 
 ```js
 import { timer } from 'az-timer';
