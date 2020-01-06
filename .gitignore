@@ -1,5 +1,7 @@
 www/
 loader/
+dist/demo*.*
+.cache
 
 *~
 *.sw[mnpcod]
