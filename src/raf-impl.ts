@@ -1,7 +1,7 @@
 import { TimerCallback } from './typings';
 import { GenTimeCheckerImpl } from './time-check-timer';
 
-let now = typeof Date.now === 'function' ? Date.now : () => new Date().getTime();
+const now = typeof Date.now === 'function' ? Date.now : () => new Date().getTime();
 const raf = window.requestAnimationFrame
   || window.webkitRequestAnimationFrame
   // @ts-ignore
@@ -20,7 +20,7 @@ const caf = window.cancelAnimationFrame
   // @ts-ignore
   || window.oCancelAnimationFrame;
 
-function rafImpl (callback: TimerCallback, interval: number) {
+function rafImpl(callback: TimerCallback, interval: number) {
   let start = now();
   let stopped = false;
   let id = -1;
