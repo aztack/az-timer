@@ -33,5 +33,4 @@ function oscillatorImpl(callback, frequency) {
     }
     return function () { return stopped = true; };
 }
-;
 exports.OscillatorTimer = time_check_timer_1.GenTimeCheckerImpl(oscillatorImpl);

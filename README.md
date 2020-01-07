@@ -32,7 +32,6 @@ stop.onclick = () => {
 ## RAF Timer
 
 Implementated with `requestAnimationFrame`
-(no vendor prefix considered)
 
 ```js
 import { timer } from 'az-timer';

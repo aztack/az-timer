@@ -30,6 +30,7 @@ export function getOnMessageHandler() {
       case 'clearTimeout':
         if (timerIds.hasOwnProperty(id)) {
           self.clearTimeout(timerIds[id]);
+          // @ts-ignore
           self.postMessage({id, method});
           delete timerIds[id];
         }
