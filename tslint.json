@@ -36,7 +36,6 @@
   ],
   "linterOptions": {
     "exclude": [
-      "src/utils/beauty-effect/*.ts"
     ]
   }
 }
